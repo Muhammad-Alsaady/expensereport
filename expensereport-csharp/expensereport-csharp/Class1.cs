@@ -44,15 +44,12 @@ namespace expensereport_csharp
         {
             int total = 0;
             int mealExpenses = 0;
-
             LogReportHeader();
-            
             foreach (Expense expense in expenses)
             {
                 mealExpenses = expense.CalculateMealExpenses( mealExpenses); 
                 total += expense.Amount;
             }
-            
             foreach (Expense expense in expenses)
             {
                 PrintExpenseDetails(expense);
@@ -67,13 +64,9 @@ namespace expensereport_csharp
         }
 
         private static void PrintExpenseDetails(Expense expense)
-        {
-            Console.WriteLine(expense.Name + "\t" + expense.Amount + "\t" + expense.GetMealOverExpensesMarker());
-        }
-
+            => Console.WriteLine(expense.Name + "\t" + expense.Amount + "\t" + expense.GetMealOverExpensesMarker());
+        
         private static void LogReportHeader() =>
             Console.WriteLine("Expenses " + DateTime.Now);
-        
-        
     }
 }
