@@ -12,6 +12,14 @@ namespace expensereport_csharp
     {
         public ExpenseType Type;
         public int Amount;
+        
+        public  string GetMealOverExpensesMarker()
+        {
+            return Type == ExpenseType.Dinner && Amount > 5000 ||
+                   Type == ExpenseType.Breakfast && Amount > 1000
+                ? "X"
+                : " ";
+        }
     }
 
     public class ExpenseReport
@@ -47,7 +55,7 @@ namespace expensereport_csharp
 
         private static void PrintExpenseDetails(Expense expense)
         {
-            Console.WriteLine(GetExpenseName(expense) + "\t" + expense.Amount + "\t" + GetMealOverExpensesMarker(expense));
+            Console.WriteLine(GetExpenseName(expense) + "\t" + expense.Amount + "\t" + expense.GetMealOverExpensesMarker());
         }
 
         private static void LogReportHeader() =>
@@ -60,15 +68,7 @@ namespace expensereport_csharp
                 mealExpenses += expense.Amount;
             return mealExpenses;
         }
-
-        private static string GetMealOverExpensesMarker(Expense expense)
-        {
-            return expense.Type == ExpenseType.Dinner && expense.Amount > 5000 ||
-                   expense.Type == ExpenseType.Breakfast && expense.Amount > 1000
-                ? "X"
-                : " ";
-        }
-
+        
         private static string GetExpenseName(Expense expense)
         {
             return expense.Type switch
