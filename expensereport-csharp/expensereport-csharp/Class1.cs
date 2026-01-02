@@ -28,10 +28,7 @@ namespace expensereport_csharp
                 if(IsMealExpenses(expense))
                     mealExpenses = GetMealExpensesAmount(expense);
                 
-                String mealOverExpensesMarker =
-                    GetMealOverExpensesMarker(expense);
-
-                Console.WriteLine(GetExpenseName(expense) + "\t" + expense.amount + "\t" + mealOverExpensesMarker);
+                Console.WriteLine(GetExpenseName(expense) + "\t" + expense.amount + "\t" + GetMealOverExpensesMarker(expense));
                 total += expense.amount;
             }
 
