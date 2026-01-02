@@ -33,10 +33,9 @@ namespace expensereport_csharp
             Console.WriteLine("Total expenses: " + total);
         }
 
-        private static void LogReportHeader()
-        {
+        private static void LogReportHeader() =>
             Console.WriteLine("Expenses " + DateTime.Now);
-        }
+        
 
         private static int CalculateMealExpenses(Expense expense, int mealExpenses)
         {
