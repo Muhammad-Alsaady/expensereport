@@ -20,13 +20,20 @@ namespace expensereport_csharp
         
         public string Name => Type.Name;
         private bool IsOverExpenses => Amount > Type.Limit;
-        public bool IsMeal => Type.IsMeal;
+        private bool IsMeal => Type.IsMeal;
         
         public  string GetMealOverExpensesMarker()
         {
             return (Type == ExpenseType.Dinner || Type == ExpenseType.Breakfast) && IsOverExpenses
                 ? "X"
                 : " ";
+        }
+        
+        public int CalculateMealExpenses(int mealExpenses)
+        {
+            if (IsMeal)
+                mealExpenses += Amount;
+            return mealExpenses;
         }
     }
 
@@ -44,7 +51,7 @@ namespace expensereport_csharp
             
             foreach (Expense expense in expenses)
             {
-                _mealExpenses = CalculateMealExpenses(expense, _mealExpenses); 
+                _mealExpenses = expense.CalculateMealExpenses( _mealExpenses); 
                 _total += expense.Amount;
             }
             
@@ -69,11 +76,6 @@ namespace expensereport_csharp
         private static void LogReportHeader() =>
             Console.WriteLine("Expenses " + DateTime.Now);
         
-        private static int CalculateMealExpenses(Expense expense, int mealExpenses)
-        {
-            if (expense.IsMeal)
-                mealExpenses += expense.Amount;
-            return mealExpenses;
-        }
+        
     }
 }
