@@ -35,7 +35,7 @@ namespace Tests
                 $@"Expenses {DateTime.Now}
 Dinner	6000	X
 Breakfast	800	 
-Car Rental	15000	 
+CarRental	15000	 
 Breakfast	1200	X
 Meal expenses: 8000
 Total expenses: 23000

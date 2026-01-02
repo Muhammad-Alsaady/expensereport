@@ -20,6 +20,11 @@ namespace expensereport_csharp
                 ? "X"
                 : " ";
         }
+        
+        public string GetExpenseName()
+        {
+            return Type.ToString();
+        }
     }
 
     public class ExpenseReport
@@ -55,7 +60,7 @@ namespace expensereport_csharp
 
         private static void PrintExpenseDetails(Expense expense)
         {
-            Console.WriteLine(GetExpenseName(expense) + "\t" + expense.Amount + "\t" + expense.GetMealOverExpensesMarker());
+            Console.WriteLine(expense.GetExpenseName() + "\t" + expense.Amount + "\t" + expense.GetMealOverExpensesMarker());
         }
 
         private static void LogReportHeader() =>
@@ -69,16 +74,7 @@ namespace expensereport_csharp
             return mealExpenses;
         }
         
-        private static string GetExpenseName(Expense expense)
-        {
-            return expense.Type switch
-            {
-                ExpenseType.Dinner => "Dinner",
-                ExpenseType.Breakfast => "Breakfast",
-                ExpenseType.CarRental => "Car Rental",
-                _ => HandleUnknownExpenseType()
-            };
-        }
+        
 
         private static string HandleUnknownExpenseType()
         {
