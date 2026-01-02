@@ -28,7 +28,6 @@ namespace expensereport_csharp
                 if(IsMealExpenses(expense))
                     mealExpenses = GetMealExpensesAmount(expense);
 
-                String expenseName = GetExpenseName(expense);
 
                 String mealOverExpensesMarker =
                     expense.type == ExpenseType.DINNER && expense.amount > 5000 ||
@@ -36,7 +35,7 @@ namespace expensereport_csharp
                         ? "X"
                         : " ";
 
-                Console.WriteLine(expenseName + "\t" + expense.amount + "\t" + mealOverExpensesMarker);
+                Console.WriteLine(GetExpenseName(expense) + "\t" + expense.amount + "\t" + mealOverExpensesMarker);
 
                 total += expense.amount;
             }
