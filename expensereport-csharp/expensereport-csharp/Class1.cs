@@ -72,10 +72,5 @@ namespace expensereport_csharp
                 mealExpenses += expense.Amount;
             return mealExpenses;
         }
-        
-        private static string HandleUnknownExpenseType()
-        {
-            throw new ArgumentOutOfRangeException();
-        }
     }
 }
