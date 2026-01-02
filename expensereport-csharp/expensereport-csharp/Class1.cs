@@ -3,11 +3,23 @@ using System.Collections.Generic;
 
 namespace expensereport_csharp
 {
-    public enum ExpenseType
+    public class ExpenseType
     {
-        Dinner, Breakfast, CarRental
-    }
+        public readonly string Name;
+        public readonly int Limit;
+        public readonly bool IsMeal;
 
+        public static readonly ExpenseType Dinner = new ExpenseType("Dinner", 5000, true);
+        public static readonly ExpenseType Breakfast = new ExpenseType("Breakfast", 1000, true);
+        public static readonly ExpenseType CarRental = new ExpenseType("CarRental", 0, false);
+
+        public ExpenseType(string name, int limit, bool isMeal)
+        {
+            Name = name;
+            Limit = limit;
+            IsMeal = isMeal;
+        }
+    }
     public class Expense
     {
         public ExpenseType Type;
@@ -22,9 +34,9 @@ namespace expensereport_csharp
         }
         
         public string GetExpenseName()
-         => Type.ToString();
+         => Type.Name;
         public bool IsMealExpenses() =>
-            Type is ExpenseType.Dinner or ExpenseType.Breakfast;
+            Type.IsMeal;
     }
 
     public class ExpenseReport
