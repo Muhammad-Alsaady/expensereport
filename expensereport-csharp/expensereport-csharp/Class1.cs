@@ -28,19 +28,7 @@ namespace expensereport_csharp
                 if(IsMealExpenses(expense))
                     mealExpenses = GetMealExpensesAmount(expense);
 
-                String expenseName = "";
-                switch (expense.type)
-                {
-                    case ExpenseType.DINNER:
-                        expenseName = "Dinner";
-                        break;
-                    case ExpenseType.BREAKFAST:
-                        expenseName = "Breakfast";
-                        break;
-                    case ExpenseType.CAR_RENTAL:
-                        expenseName = "Car Rental";
-                        break;
-                }
+                String expenseName = GetExpenseName(expense);
 
                 String mealOverExpensesMarker =
                     expense.type == ExpenseType.DINNER && expense.amount > 5000 ||
@@ -55,6 +43,17 @@ namespace expensereport_csharp
 
             Console.WriteLine("Meal expenses: " + mealExpenses);
             Console.WriteLine("Total expenses: " + total);
+        }
+
+        private static string GetExpenseName(Expense expense)
+        {
+            return expense.type switch
+            {
+                ExpenseType.DINNER => "Dinner",
+                ExpenseType.BREAKFAST => "Breakfast",
+                ExpenseType.CAR_RENTAL => "Car Rental",
+                _ => throw new ArgumentOutOfRangeException()
+            };
         }
 
         private static int GetMealExpensesAmount( Expense expense)
