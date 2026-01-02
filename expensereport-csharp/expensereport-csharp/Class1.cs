@@ -85,9 +85,6 @@ namespace expensereport_csharp
             throw new ArgumentOutOfRangeException();
         }
 
-        private static int GetMealExpensesAmount( Expense expense)
-            => expense.Amount;
-
         private static bool IsMealExpenses(Expense expense) =>
              expense.Type is ExpenseType.Dinner or ExpenseType.Breakfast;
         
