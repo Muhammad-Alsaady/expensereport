@@ -25,10 +25,8 @@ namespace expensereport_csharp
             
             foreach (Expense expense in expenses)
             {
-                if (expense.type == ExpenseType.DINNER || expense.type == ExpenseType.BREAKFAST)
-                {
+                if(IsMealExpenses(expense))
                     mealExpenses += expense.amount;
-                }
 
                 String expenseName = "";
                 switch (expense.type)
@@ -58,5 +56,9 @@ namespace expensereport_csharp
             Console.WriteLine("Meal expenses: " + mealExpenses);
             Console.WriteLine("Total expenses: " + total);
         }
+
+        private static bool IsMealExpenses(Expense expense) =>
+             expense.type == ExpenseType.DINNER || expense.type == ExpenseType.BREAKFAST;
+        
     }
 }
