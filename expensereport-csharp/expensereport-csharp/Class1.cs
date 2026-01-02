@@ -26,8 +26,12 @@ namespace expensereport_csharp
             foreach (Expense expense in expenses)
             {
                 mealExpenses = CalculateMealExpenses(expense, mealExpenses); 
-                PrintExpenseDetails(expense);
                 total += expense.Amount;
+            }
+            
+            foreach (Expense expense in expenses)
+            {
+                PrintExpenseDetails(expense);
             }
             DisplayExpenseSummary(mealExpenses, total);
         }
