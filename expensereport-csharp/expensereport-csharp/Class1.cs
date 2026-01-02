@@ -25,14 +25,20 @@ namespace expensereport_csharp
             
             foreach (Expense expense in expenses)
             {
-                if (IsMealExpenses(expense))
-                    total += expense.Amount; //GetMealExpensesAmount(expense);
+                mealExpenses = CalculateMealExpenses(expense, mealExpenses); 
                 Console.WriteLine(GetExpenseName(expense) + "\t" + expense.Amount + "\t" + GetMealOverExpensesMarker(expense));
                 total += expense.Amount;
             }
 
             Console.WriteLine("Meal expenses: " + mealExpenses);
             Console.WriteLine("Total expenses: " + total);
+        }
+
+        private static int CalculateMealExpenses(Expense expense, int mealExpenses)
+        {
+            if (IsMealExpenses(expense))
+                mealExpenses += expense.Amount;
+            return mealExpenses;
         }
 
         private static string GetMealOverExpensesMarker(Expense expense)
