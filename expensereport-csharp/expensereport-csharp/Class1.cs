@@ -19,7 +19,7 @@ namespace expensereport_csharp
         public int Amount;
         
         public string Name => Type.Name;
-        public bool IsOverExpenses => Amount > Type.Limit;
+        private bool IsOverExpenses => Amount > Type.Limit;
         public bool IsMeal => Type.IsMeal;
         
         public  string GetMealOverExpensesMarker()
