@@ -52,8 +52,13 @@ namespace expensereport_csharp
                 ExpenseType.DINNER => "Dinner",
                 ExpenseType.BREAKFAST => "Breakfast",
                 ExpenseType.CAR_RENTAL => "Car Rental",
-                _ => throw new ArgumentOutOfRangeException()
+                _ => HandleUnknownExpenseType()
             };
+        }
+
+        private static string HandleUnknownExpenseType()
+        {
+            throw new ArgumentOutOfRangeException();
         }
 
         private static int GetMealExpensesAmount( Expense expense)
