@@ -10,8 +10,8 @@ namespace expensereport_csharp
 
     public class Expense
     {
-        public ExpenseType type;
-        public int amount;
+        public ExpenseType Type;
+        public int Amount;
     }
 
     public class ExpenseReport
@@ -25,11 +25,10 @@ namespace expensereport_csharp
             
             foreach (Expense expense in expenses)
             {
-                if(IsMealExpenses(expense))
-                    mealExpenses = GetMealExpensesAmount(expense);
-                
-                Console.WriteLine(GetExpenseName(expense) + "\t" + expense.amount + "\t" + GetMealOverExpensesMarker(expense));
-                total += expense.amount;
+                if (IsMealExpenses(expense))
+                    total += expense.Amount; //GetMealExpensesAmount(expense);
+                Console.WriteLine(GetExpenseName(expense) + "\t" + expense.Amount + "\t" + GetMealOverExpensesMarker(expense));
+                total += expense.Amount;
             }
 
             Console.WriteLine("Meal expenses: " + mealExpenses);
@@ -38,15 +37,15 @@ namespace expensereport_csharp
 
         private static string GetMealOverExpensesMarker(Expense expense)
         {
-            return expense.type == ExpenseType.DINNER && expense.amount > 5000 ||
-                   expense.type == ExpenseType.BREAKFAST && expense.amount > 1000
+            return expense.Type == ExpenseType.DINNER && expense.Amount > 5000 ||
+                   expense.Type == ExpenseType.BREAKFAST && expense.Amount > 1000
                 ? "X"
                 : " ";
         }
 
         private static string GetExpenseName(Expense expense)
         {
-            return expense.type switch
+            return expense.Type switch
             {
                 ExpenseType.DINNER => "Dinner",
                 ExpenseType.BREAKFAST => "Breakfast",
@@ -61,10 +60,10 @@ namespace expensereport_csharp
         }
 
         private static int GetMealExpensesAmount( Expense expense)
-            => expense.amount;
+            => expense.Amount;
 
         private static bool IsMealExpenses(Expense expense) =>
-             expense.type == ExpenseType.DINNER || expense.type == ExpenseType.BREAKFAST;
+             expense.Type == ExpenseType.DINNER || expense.Type == ExpenseType.BREAKFAST;
         
     }
 }
