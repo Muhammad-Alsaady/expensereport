@@ -5,7 +5,7 @@ namespace expensereport_csharp
 {
     public enum ExpenseType
     {
-        DINNER, BREAKFAST, CAR_RENTAL
+        Dinner, Breakfast, CarRental
     }
 
     public class Expense
@@ -37,8 +37,8 @@ namespace expensereport_csharp
 
         private static string GetMealOverExpensesMarker(Expense expense)
         {
-            return expense.Type == ExpenseType.DINNER && expense.Amount > 5000 ||
-                   expense.Type == ExpenseType.BREAKFAST && expense.Amount > 1000
+            return expense.Type == ExpenseType.Dinner && expense.Amount > 5000 ||
+                   expense.Type == ExpenseType.Breakfast && expense.Amount > 1000
                 ? "X"
                 : " ";
         }
@@ -47,9 +47,9 @@ namespace expensereport_csharp
         {
             return expense.Type switch
             {
-                ExpenseType.DINNER => "Dinner",
-                ExpenseType.BREAKFAST => "Breakfast",
-                ExpenseType.CAR_RENTAL => "Car Rental",
+                ExpenseType.Dinner => "Dinner",
+                ExpenseType.Breakfast => "Breakfast",
+                ExpenseType.CarRental => "Car Rental",
                 _ => HandleUnknownExpenseType()
             };
         }
@@ -63,7 +63,7 @@ namespace expensereport_csharp
             => expense.Amount;
 
         private static bool IsMealExpenses(Expense expense) =>
-             expense.Type == ExpenseType.DINNER || expense.Type == ExpenseType.BREAKFAST;
+             expense.Type == ExpenseType.Dinner || expense.Type == ExpenseType.Breakfast;
         
     }
 }
