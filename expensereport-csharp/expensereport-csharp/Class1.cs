@@ -3,22 +3,15 @@ using System.Collections.Generic;
 
 namespace expensereport_csharp
 {
-    public class ExpenseType
+    public class ExpenseType(string name, int limit, bool isMeal)
     {
-        public readonly string Name;
-        public readonly int Limit;
-        public readonly bool IsMeal;
+        public readonly string Name = name;
+        public readonly int Limit = limit;
+        public readonly bool IsMeal = isMeal;
 
         public static readonly ExpenseType Dinner = new ExpenseType("Dinner", 5000, true);
         public static readonly ExpenseType Breakfast = new ExpenseType("Breakfast", 1000, true);
         public static readonly ExpenseType CarRental = new ExpenseType("CarRental", 0, false);
-
-        public ExpenseType(string name, int limit, bool isMeal)
-        {
-            Name = name;
-            Limit = limit;
-            IsMeal = isMeal;
-        }
     }
     public class Expense
     {
