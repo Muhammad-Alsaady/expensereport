@@ -39,27 +39,25 @@ namespace expensereport_csharp
 
     public class ExpenseReport
     {
-        private int _total;
-        private int _mealExpenses;
-
+        
         public void PrintReport(List<Expense> expenses)
         {
-            _total = 0;
-            _mealExpenses = 0;
+            int total = 0;
+            int mealExpenses = 0;
 
             LogReportHeader();
             
             foreach (Expense expense in expenses)
             {
-                _mealExpenses = expense.CalculateMealExpenses( _mealExpenses); 
-                _total += expense.Amount;
+                mealExpenses = expense.CalculateMealExpenses( mealExpenses); 
+                total += expense.Amount;
             }
             
             foreach (Expense expense in expenses)
             {
                 PrintExpenseDetails(expense);
             }
-            DisplayExpenseSummary(_mealExpenses, _total);
+            DisplayExpenseSummary(mealExpenses, total);
         }
 
         private static void DisplayExpenseSummary(int mealExpenses, int total)
