@@ -16,24 +16,27 @@ namespace expensereport_csharp
 
     public class ExpenseReport
     {
+        private int _total;
+        private int _mealExpenses;
+
         public void PrintReport(List<Expense> expenses)
         {
-            int total = 0;
-            int mealExpenses = 0;
+            _total = 0;
+            _mealExpenses = 0;
 
             LogReportHeader();
             
             foreach (Expense expense in expenses)
             {
-                mealExpenses = CalculateMealExpenses(expense, mealExpenses); 
-                total += expense.Amount;
+                _mealExpenses = CalculateMealExpenses(expense, _mealExpenses); 
+                _total += expense.Amount;
             }
             
             foreach (Expense expense in expenses)
             {
                 PrintExpenseDetails(expense);
             }
-            DisplayExpenseSummary(mealExpenses, total);
+            DisplayExpenseSummary(_mealExpenses, _total);
         }
 
         private static void DisplayExpenseSummary(int mealExpenses, int total)
