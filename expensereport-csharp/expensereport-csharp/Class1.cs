@@ -27,21 +27,24 @@ namespace expensereport_csharp
             {
                 if(IsMealExpenses(expense))
                     mealExpenses = GetMealExpensesAmount(expense);
-
-
+                
                 String mealOverExpensesMarker =
-                    expense.type == ExpenseType.DINNER && expense.amount > 5000 ||
-                    expense.type == ExpenseType.BREAKFAST && expense.amount > 1000
-                        ? "X"
-                        : " ";
+                    GetMealOverExpensesMarker(expense);
 
                 Console.WriteLine(GetExpenseName(expense) + "\t" + expense.amount + "\t" + mealOverExpensesMarker);
-
                 total += expense.amount;
             }
 
             Console.WriteLine("Meal expenses: " + mealExpenses);
             Console.WriteLine("Total expenses: " + total);
+        }
+
+        private static string GetMealOverExpensesMarker(Expense expense)
+        {
+            return expense.type == ExpenseType.DINNER && expense.amount > 5000 ||
+                   expense.type == ExpenseType.BREAKFAST && expense.amount > 1000
+                ? "X"
+                : " ";
         }
 
         private static string GetExpenseName(Expense expense)
