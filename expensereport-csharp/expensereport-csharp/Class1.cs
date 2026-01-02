@@ -26,7 +26,7 @@ namespace expensereport_csharp
             foreach (Expense expense in expenses)
             {
                 if(IsMealExpenses(expense))
-                    mealExpenses += expense.amount;
+                    mealExpenses = GetMealExpensesAmount(mealExpenses, expense);
 
                 String expenseName = "";
                 switch (expense.type)
@@ -55,6 +55,12 @@ namespace expensereport_csharp
 
             Console.WriteLine("Meal expenses: " + mealExpenses);
             Console.WriteLine("Total expenses: " + total);
+        }
+
+        private static int GetMealExpensesAmount(int mealExpenses, Expense expense)
+        {
+            mealExpenses += expense.amount;
+            return mealExpenses;
         }
 
         private static bool IsMealExpenses(Expense expense) =>
