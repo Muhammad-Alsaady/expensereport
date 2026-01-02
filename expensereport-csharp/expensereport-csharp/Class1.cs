@@ -28,11 +28,6 @@ namespace expensereport_csharp
                 ? "X"
                 : " ";
         }
-        
-        public string GetExpenseName()
-         => Type.Name;
-        public bool IsMealExpenses() =>
-            Type.IsMeal;
     }
 
     public class ExpenseReport
@@ -68,7 +63,7 @@ namespace expensereport_csharp
 
         private static void PrintExpenseDetails(Expense expense)
         {
-            Console.WriteLine(expense.GetExpenseName() + "\t" + expense.Amount + "\t" + expense.GetMealOverExpensesMarker());
+            Console.WriteLine(expense.Name + "\t" + expense.Amount + "\t" + expense.GetMealOverExpensesMarker());
         }
 
         private static void LogReportHeader() =>
@@ -76,7 +71,7 @@ namespace expensereport_csharp
         
         private static int CalculateMealExpenses(Expense expense, int mealExpenses)
         {
-            if (expense.IsMealExpenses())
+            if (expense.IsMeal)
                 mealExpenses += expense.Amount;
             return mealExpenses;
         }
