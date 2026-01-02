@@ -22,9 +22,8 @@ namespace expensereport_csharp
         }
         
         public string GetExpenseName()
-        {
-            return Type.ToString();
-        }
+         => Type.ToString();
+        
     }
 
     public class ExpenseReport
@@ -66,7 +65,6 @@ namespace expensereport_csharp
         private static void LogReportHeader() =>
             Console.WriteLine("Expenses " + DateTime.Now);
         
-
         private static int CalculateMealExpenses(Expense expense, int mealExpenses)
         {
             if (IsMealExpenses(expense))
@@ -74,8 +72,6 @@ namespace expensereport_csharp
             return mealExpenses;
         }
         
-        
-
         private static string HandleUnknownExpenseType()
         {
             throw new ArgumentOutOfRangeException();
