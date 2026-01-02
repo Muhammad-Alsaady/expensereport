@@ -23,7 +23,8 @@ namespace expensereport_csharp
         
         public string GetExpenseName()
          => Type.ToString();
-        
+        public bool IsMealExpenses() =>
+            Type is ExpenseType.Dinner or ExpenseType.Breakfast;
     }
 
     public class ExpenseReport
@@ -67,7 +68,7 @@ namespace expensereport_csharp
         
         private static int CalculateMealExpenses(Expense expense, int mealExpenses)
         {
-            if (IsMealExpenses(expense))
+            if (expense.IsMealExpenses())
                 mealExpenses += expense.Amount;
             return mealExpenses;
         }
@@ -76,9 +77,5 @@ namespace expensereport_csharp
         {
             throw new ArgumentOutOfRangeException();
         }
-
-        private static bool IsMealExpenses(Expense expense) =>
-             expense.Type is ExpenseType.Dinner or ExpenseType.Breakfast;
-        
     }
 }
