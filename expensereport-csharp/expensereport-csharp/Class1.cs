@@ -29,6 +29,11 @@ namespace expensereport_csharp
                 PrintExpenseDetails(expense);
                 total += expense.Amount;
             }
+            DisplayExpenseSummary(mealExpenses, total);
+        }
+
+        private static void DisplayExpenseSummary(int mealExpenses, int total)
+        {
             Console.WriteLine("Meal expenses: " + mealExpenses);
             Console.WriteLine("Total expenses: " + total);
         }
