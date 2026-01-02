@@ -17,11 +17,12 @@ namespace expensereport_csharp
     {
         public ExpenseType Type;
         public int Amount;
-        
+        private int _mealExpenses;
+
         public string Name => Type.Name;
         private bool IsOverExpenses => Amount > Type.Limit;
         private bool IsMeal => Type.IsMeal;
-        
+        public int MealExpenses => IsMeal ? Amount : 0;
         public  string GetMealOverExpensesMarker()
         {
             return (Type == ExpenseType.Dinner || Type == ExpenseType.Breakfast) && IsOverExpenses
@@ -29,12 +30,6 @@ namespace expensereport_csharp
                 : " ";
         }
         
-        public int CalculateMealExpenses(int mealExpenses)
-        {
-            if (IsMeal)
-                mealExpenses += Amount;
-            return mealExpenses;
-        }
     }
 
     public class ExpenseReport
@@ -47,7 +42,7 @@ namespace expensereport_csharp
             LogReportHeader();
             foreach (Expense expense in expenses)
             {
-                mealExpenses = expense.CalculateMealExpenses( mealExpenses); 
+                mealExpenses += expense.MealExpenses; 
                 total += expense.Amount;
             }
             foreach (Expense expense in expenses)
