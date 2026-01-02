@@ -72,7 +72,7 @@ namespace expensereport_csharp
             => expense.Amount;
 
         private static bool IsMealExpenses(Expense expense) =>
-             expense.Type == ExpenseType.Dinner || expense.Type == ExpenseType.Breakfast;
+             expense.Type is ExpenseType.Dinner or ExpenseType.Breakfast;
         
     }
 }
