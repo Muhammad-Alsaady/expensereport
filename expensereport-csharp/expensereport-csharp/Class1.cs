@@ -26,11 +26,16 @@ namespace expensereport_csharp
             foreach (Expense expense in expenses)
             {
                 mealExpenses = CalculateMealExpenses(expense, mealExpenses); 
-                Console.WriteLine(GetExpenseName(expense) + "\t" + expense.Amount + "\t" + GetMealOverExpensesMarker(expense));
+                PrintExpenseDetails(expense);
                 total += expense.Amount;
             }
             Console.WriteLine("Meal expenses: " + mealExpenses);
             Console.WriteLine("Total expenses: " + total);
+        }
+
+        private static void PrintExpenseDetails(Expense expense)
+        {
+            Console.WriteLine(GetExpenseName(expense) + "\t" + expense.Amount + "\t" + GetMealOverExpensesMarker(expense));
         }
 
         private static void LogReportHeader() =>
