@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace expensereport_csharp
 {
-    public class ExpenseType(string name, int limit, bool isMeal)
+    public sealed record ExpenseType(string name, int limit, bool isMeal)
     {
         public readonly string Name = name;
         public readonly int Limit = limit;
