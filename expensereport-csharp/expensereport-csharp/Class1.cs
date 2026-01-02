@@ -25,10 +25,13 @@ namespace expensereport_csharp
         public ExpenseType Type;
         public int Amount;
         
+        public string Name => Type.Name;
+        public bool IsOverExpenses => Amount > Type.Limit;
+        public bool IsMeal => Type.IsMeal;
+        
         public  string GetMealOverExpensesMarker()
         {
-            return Type == ExpenseType.Dinner && Amount > 5000 ||
-                   Type == ExpenseType.Breakfast && Amount > 1000
+            return (Type == ExpenseType.Dinner || Type == ExpenseType.Breakfast) && IsOverExpenses
                 ? "X"
                 : " ";
         }
